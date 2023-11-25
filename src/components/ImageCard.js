@@ -15,8 +15,8 @@ const ImageCard = ({imageSource}) => {
             source={imageSource}
             style={{ 
                 resizeMode: 'cover',
-                height: windowHeight * 0.52,
-                width: windowWidth * 0.88,
+                height: windowHeight * 0.50,
+                width: windowWidth * 0.90,
                 borderRadius: 50,
             }}
         />

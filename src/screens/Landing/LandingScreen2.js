@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     },
     orangeContainer: {
         backgroundColor: '#F86D3B',
-        padding: windowHeight * 0.115,
+        padding: windowHeight * 0.125,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
         alignItems:'center',
@@ -40,13 +40,12 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontSize: 18,
-        marginBottom: 8,
+        marginBottom: 12,
         fontFamily:'Poppins',
         width: windowWidth * 0.85,
         textAlign:'center',
         fontWeight: 'bold',
-        fontSize:22,
+        fontSize:20,
     },
 });
 

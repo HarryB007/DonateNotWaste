@@ -5,8 +5,6 @@ import {Pressable,
     View,
     Dimensions,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -30,6 +28,7 @@ const styles = StyleSheet.create({
     container: {
         marginVertical: windowHeight * -0.03,
         justifyContent: 'center',
+        paddingTop:windowHeight * 0.07,
     },
     title: {
         alignSelf: 'center',
@@ -38,9 +37,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     wrapperCustom: {
-        height: windowHeight * 0.07,
+        height: windowHeight * 0.085,
         borderRadius: 100,
-        width: windowWidth * 0.8,
+        width: windowWidth * 0.85,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

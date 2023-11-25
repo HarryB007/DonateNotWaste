@@ -14,7 +14,7 @@ const LandingScreen1 = ({navigation}) => {
     const handlePress = () =>{
         navigation.navigate('LandingScreen2');
     }
-    const textContent = "You have two hands\none to help yourself\nthe second to help\n others."
+    const textContent = "You have two hands\none to help yourself,\nthe second to help\n others."
     return (
         <View style={styles.container}>
             <ImageCard imageSource={require('../../assets/images/donate.png')}/>
@@ -32,18 +32,17 @@ const styles = StyleSheet.create({
     },
     orangeContainer: {
         backgroundColor: '#F86D3B',
-        padding: windowHeight * 0.085,
+        padding: windowHeight * 0.095,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
     },
     text: {
         color: 'white',
-        fontSize: 18,
-        marginBottom: 8,
+        marginBottom: 12,
         fontFamily:'Poppins',
         textAlign:'center',
         fontWeight: 'bold',
-        fontSize:22,
+        fontSize:20,
     },
 });
 

@@ -42,32 +42,31 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFF',
     },
     image: {
-        width: 300,
+        width: 320,
         alignSelf: 'center',
-        height: 300,
+        height: 260,
     },
     text1:{
         textAlign: 'center',
         color:'#4D4D4D',
-        fontSize:16,
-        // fontWeight:'bold',
-        width: 360,
+        fontSize:14,
+        width: 320,
         alignSelf:'center',
-        marginTop:-90,
+        marginTop: -105,
     },
     button: {
         alignItems: 'center',
         backgroundColor: '#F86D3B',
-        padding: 18,
-        width: 340,
-        marginTop:40,
+        padding: 12,
+        width: 300,
+        marginTop:35,
         borderRadius:15,
         alignSelf:'center'
     },
     button2: {
         alignItems: 'center',
-        padding: 18,
-        width: 340,
+        padding: 12,
+        width: 300,
         borderColor:'#F86D3B',
         borderWidth:2,
         marginTop:18,
@@ -76,20 +75,20 @@ const styles = StyleSheet.create({
     },
     text2:{
         color:'white',
-        fontSize:26,
+        fontSize:24,
         fontWeight:'bold'
     },
     text3:{
         color:'#454545',
-        fontSize:26,
-        fontWeight:'bold',
+        fontSize:24,
+        // fontWeight:'bold',
     },
     line:{
         borderBottomColor: '#454545',
         borderBottomWidth: 1,
-        width: 350,
+        width: 300,
         alignSelf: 'center',
-        marginTop: 65,
+        marginTop: 45,
         fontWeight:'bold',
     }
 });
