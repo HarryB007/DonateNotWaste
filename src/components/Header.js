@@ -1,5 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View,
+    Text, 
+    Image,
+    StyleSheet, 
+    Dimensions 
+} from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -13,13 +18,21 @@ export default function Header() {
                     NotWaste
                 </Text>
             </Text>
+            {/* <Image
+                source={require('../assets/images/logo.png')}
+                style={{
+                    height: windowHeight * 0.14,
+                    width: windowWidth * 0.50,
+                    position: 'fixed',
+                }}
+            /> */}
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        padding:windowWidth*0.09,
+        padding:windowWidth* 0.04,
         justifyContent: 'center',
         alignItems: 'center',
     },
