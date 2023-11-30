@@ -21,7 +21,7 @@ export default StartScreen = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.logoSpace}>
                 <Image
-                    source={require('../../assets/images/logo.png')}
+                    source={require('../../assets/images/Logo.png')}
                     style={styles.logo}
                 />
             </View>
@@ -36,32 +36,32 @@ export default StartScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:'white',
     },
     logoSpace:{
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        margin: 35,
+        margin: 30,
     },
     logo: {
         height: 300,
-        width: 300,
+        width: 340,
     },
     orangeContainer: {
         backgroundColor: '#F86D3B',
-        padding: windowHeight * 0.16,
+        padding: windowHeight * 0.18,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
         alignItems:'center',
         justifyContent:'center',
     },
     text: {
-        marginTop: 40,
+        marginTop: 15,
         color: 'white',
-        fontFamily:'Poppins',
+        fontFamily:'Poppins-SemiBold',
         width: windowWidth * 0.85,
         textAlign:'center',
-        fontWeight: 'bold',
         fontSize:30,
     },
 });

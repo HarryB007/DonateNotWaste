@@ -29,6 +29,7 @@ const LandingScreen3 = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:'#fff',
     },
     orangeContainer: {
         backgroundColor: '#F86D3B',
@@ -41,11 +42,10 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         marginBottom: 12,
-        fontFamily:'Poppins',
-        width: windowWidth * 0.75,
+        fontFamily:'Poppins-SemiBold',
+        width: windowWidth * 0.80,
         textAlign:'center',
-        fontWeight: 'bold',
-        fontSize:20,
+        fontSize:18,
     },
 });
 

@@ -22,10 +22,10 @@ return (
                 Revolutionizing the Fight Against Food Waste and Enabling Communities
                 to Thrive!
             </Text>
-            <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate("LoginScreen")}>
-                <Text style={styles.text2}>LogIn</Text>
+            <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('LoginScreen')}>
+                <Text style={styles.text2}>Login</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button2} onPress={()=> navigation.navigate("SignUpScreen")}>
+            <TouchableOpacity style={styles.button2} onPress={()=> navigation.navigate('SignUpScreen')}>
                 <Text style={styles.text3}>Sign Up</Text>
             </TouchableOpacity>
         </View>
