@@ -1,7 +1,6 @@
 import React from 'react';
 import { View,
     Text, 
-    Image,
     StyleSheet, 
     Dimensions 
 } from 'react-native';
@@ -9,44 +8,25 @@ import { View,
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default function Header() {
+export default function Header({title}) {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>
-                Donate
-                <Text style={styles.text1}>
-                    NotWaste
-                </Text>
+                {title}
             </Text>
-            {/* <Image
-                source={require('../assets/images/logo.png')}
-                style={{
-                    height: windowHeight * 0.14,
-                    width: windowWidth * 0.50,
-                    position: 'fixed',
-                }}
-            /> */}
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        padding:windowWidth* 0.04,
-        justifyContent: 'center',
-        alignItems: 'center',
+        marginTop:25,
     },
     text: {
-        fontSize: 30,
-        color: '#717B56',
+        fontSize: 26,
+        color: '#000',
         fontWeight: 'bold',
         fontFamily:'Poppins',
     },
-    text1: {
-        fontSize: 30,
-        color: 'red',
-        fontWeight: 'bold',
-        fontFamily:'Poppins',
-    }
 });
 
