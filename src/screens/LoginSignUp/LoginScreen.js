@@ -10,25 +10,66 @@ import {
   Dimensions,
 } from 'react-native';
 import { Formik } from 'formik';
-
+import { useNavigation } from '@react-navigation/native';
 import Header from '../../components/Header.js';
 import Button from '../../components/Button.js';
 import ButtonL from '../../components/ButtonL.js';
 import ErrorMessage from '../../components/ErrorMessage';
 import { Email, Group } from '../../assets/images';
 import Loader from '../../components/Loader.js';
-import LoginContext from '../../context/Context';
+// import { auth } from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
+  const navigation = useNavigation();
   const [loader, setLoader] = useState(false);
+
+  const handleSignIn = async (email, password) => {
+    try {
+      setLoader(true);
+
+      // Sign in user with email and password
+      const userCredential = await auth().signInWithEmailAndPassword(email, password);
+
+      // Get the signed-in user
+      const user = userCredential.user;
+
+      // Retrieve user type from Firestore
+      const userTypeSnapshot = await firestore().collection('users').doc(user.uid).get();
+      const userType = userTypeSnapshot.data()?.userType;
+
+      // Navigate to the appropriate home screen based on user type
+      switch (userType) {
+        case 'donor':
+          navigation.navigate('DonorHomePage');
+          break;
+        case 'needy':
+          navigation.navigate('NeedyHomePage');
+          break;
+        case 'rider':
+          navigation.navigate('RiderHomePage');
+          break;
+        // Add more cases for other user types if needed
+        default:
+          console.warn(`Unknown user type: ${userType}`);
+      }
+    } catch (error) {
+      console.error('Error during sign in:', error.message);
+      // Handle error, display an error message, etc.
+    } finally {
+      setLoader(false);
+    }
+  };
 
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
       validateOnMount={true}
+      onSubmit={(values) => handleSignIn(values.email, values.password)}
     >
       {({
         handleChange,
@@ -43,7 +84,7 @@ const LoginScreen = ({ navigation }) => {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.container}
         >
-          <Header title={'Sign In'}/>
+          <Header title={'Sign In'} showBackButton={true}/>
           <View style={{ alignContent: 'center', marginTop: 80, marginHorizontal: 15 }}>
             <View style={{ marginTop: 1, marginLeft: 5 }}>
               <Image source={Email} style={styles.icon} />
@@ -51,7 +92,6 @@ const LoginScreen = ({ navigation }) => {
                 placeholder="Email"
                 placeholderTextColor="#6B6B6B"
                 style={styles.input}
-                png={Email}
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
@@ -95,12 +135,7 @@ const LoginScreen = ({ navigation }) => {
               <View style={styles.line} />
             </View>
 
-            {/* <Text style={styles.text3}>
-              Don’t have an account?
-              <Text style={styles.text4} onPress={() => navigation.navigate('SignUp')}>Sign Up</Text>
-            </Text> */}
-
-            <TouchableHighlight style={{ marginTop: 30 }} onPress={handleSubmit} underlayColor="#ffffff">
+            <TouchableHighlight style={{ marginTop: 80 }} onPress={() => navigation.navigate('SignUpScreen')} underlayColor="#ffffff">
               <ButtonL title="Sign Up" style={styles.signup}/>
             </TouchableHighlight>
           </View>
@@ -115,6 +150,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
+    backgroundColor:'#fff',
   },
   input: {
     width: 280,
@@ -139,15 +175,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     color:'#000',
   },
-  text3: {
-    alignSelf: 'center',
-    marginBottom: -50,
-    marginTop: 20,
-  },
-  text4: {
-    color: '#F86D3B',
-    fontWeight: 'bold',
-  },
   lineContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -169,14 +196,15 @@ const styles = StyleSheet.create({
     width:windowHeight * 0.07,
     backgroundColor: '#F86D3B',
     borderRadius: 100,
-    paddingHorizontal: 17,
-    paddingVertical: 17,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 18,
-    alignItems:'center',
+    fontSize: 17,
   },
+  signup:{
+  
+  }
 });
 
 export default LoginScreen;
-

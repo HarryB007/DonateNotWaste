@@ -13,9 +13,30 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
+        // classpath 'com.google.gms:google-services:4.4.0' apply false
+        // id("com.google.gms.google-services") version "4.4.0" apply false
+        classpath("com.google.gms:google-services:4.4.0")
+    }
+}
+
+allprojects{
+    repositories{
+        mavenCentral()
+        mavenLocal()
+        maven{
+            url("$rootDir/../node_modules/react-native/android")
+        }
+        maven{
+            url("$rootDir/../node_modules/jsc-android/dist")
+        }
+
+        google()
+        jcenter()
+        maven { url "https://www.jitpack.io"}
     }
 }

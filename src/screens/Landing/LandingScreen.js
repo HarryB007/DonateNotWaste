@@ -16,26 +16,26 @@ const slides = [
         text: 'You have two hands, one to help yourself, the second to help others.',
         image: require('../../assets/images/donate.png'),
         textWidth: windowWidth * 0.6,
-        paddingVertical: windowHeight * 0.125,
-        fontSize: 21,
+        paddingVertical: windowHeight * 0.13,
+        fontSize: 18,
         fontFamily: 'Poppins-SemiBold',
     },
     {
         key: '2',
         text: "If you can't feed a hundred people, then just feed one.",
         image: require('../../assets/images/donate-1.png'),
-        textWidth: windowWidth * 0.95,
-        paddingVertical: windowHeight * 0.14,
-        fontSize: 21,
+        textWidth: windowWidth * 0.9,
+        paddingVertical: windowHeight * 0.167,
+        fontSize: 18,
         fontFamily: 'Poppins-SemiBold',
     },
     {
         key: '3',
-        text: 'Giving is not just about making a donation, it is about making a difference.',
+        text: 'Giving is not just about\n making a donation, it is about\n making a difference.',
         image: require('../../assets/images/donate-2.png'),
         textWidth: windowWidth * 0.8,
-        paddingVertical: windowHeight * 0.125,
-        fontSize: 21,
+        paddingVertical: windowHeight * 0.149,
+        fontSize: 18,
         fontFamily: 'Poppins-SemiBold',
     },
     {
@@ -44,7 +44,7 @@ const slides = [
         image: require('../../assets/images/Logo.png'),
         textWidth: windowWidth * 0.8,
         paddingVertical: windowHeight * 0.2,
-        fontSize: 32,
+        fontSize: 28,
         fontFamily: 'Poppins-Bold',
     }
     ];
@@ -81,7 +81,7 @@ const slides = [
                 <ImageCard imageSource={item.image} />
                 <View style={[styles.orangeContainer, { paddingVertical: item.paddingVertical }]}>
                     <Text style={[styles.text, { width: item.textWidth,  fontSize: item.fontSize, fontFamily: item.fontFamily }]}>{item.text}</Text>
-                    {index < 3 && ( // Render Skip button only for the first 3 slides
+                    {index < 3 && (
                     <View style={styles.skipButtonContainer}>
                         {renderSkipButton()}
                     </View>
@@ -126,7 +126,7 @@ const slides = [
     },
     skipButtonContainer: {
         position: 'absolute',
-        top: 267,
+        top: 258,
         left: 20,
         zIndex: 1,
     },
