@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1035148449170",
+    "project_id": "donate-notwaste",
+    "storage_bucket": "donate-notwaste.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035148449170:android:71d0a3ac209a9f9da11d4b",
+        "android_client_info": {
+          "package_name": "com.donatenotwaste"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALvuoL3vyHmxkbl-6TZtJmr8vuTSGfaUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
