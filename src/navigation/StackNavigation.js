@@ -13,8 +13,10 @@ import LoginScreen from '../screens/LoginSignUp/LoginScreen';
 import SignUpScreen from '../screens/LoginSignUp/SignUpScreen';
 import HomeScreen from '../screens/Main/HomeScreen';
 import DonorHomePage from '../screens/Main/DonorHomePage';
+import NeedyHomePage from '../screens/Main/NeedyHomePage';
 import AddPost from '../screens/Main/AddPost';
-
+import ViewPost from '../screens/Main/ViewPost';
+import BottomTabNavigation from '../navigation/BottomTabNavigation';
 enableScreens();
 
 export default function App() {
@@ -31,9 +33,12 @@ export default function App() {
             <Stack.Screen name="LandingPage" component={LandingPage} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
+            {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
             <Stack.Screen name="DonorHomePage" component={DonorHomePage} />
             <Stack.Screen name="AddPost" component={AddPost} />
+            <Stack.Screen name="ViewPost" component={ViewPost} />
+            <Stack.Screen name="NeedyHomePage" component={NeedyHomePage} />
+            {/* <Stack.Screen name="BottomTabNavigation" component={BottomTabNavigation} /> */}
         </Stack.Navigator>
     );
 }

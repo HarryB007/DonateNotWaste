@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-nati
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeButton from '../../components/HomeButton';
-import BottomTabNavigation from '../../navigation/BottomTabNavigation';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -17,19 +16,19 @@ const DonorHomePage = ({ navigation }) => {
             <View style={styles.header}>
                 {/* <Text style={styles.headerText}>Welcome, Donor!</Text> */}
                 <TouchableOpacity onPress={navigation} style={styles.notificationIcon}>
-                <Ionicons name="account-circle" size={30} color="black" />
+                <Ionicons name="notifications" size={30} color="black" />
                 </TouchableOpacity>
             </View>
             <View style={styles.centerContent}>
-                <Text style={styles.centerText}>Welcome, Donor!</Text>
+                <Text style={styles.centerText}>Welcome, Needy!</Text>
             </View>
             <View style={styles.container1}>
-                <HomeButton
+                {/* <HomeButton
                     iconName="pencil"
                     placeholder="Post a Donation"
                     navigationTarget="AddPost"
                     navigation={navigation}
-                />
+                /> */}
                 <HomeButton
                     iconName="pencil"
                     placeholder="View Posts"
@@ -38,7 +37,7 @@ const DonorHomePage = ({ navigation }) => {
                 />
                 <HomeButton
                     iconName="pencil"
-                    placeholder="Donation Request"
+                    placeholder="Request History"
                     navigationTarget=""
                     navigation={navigation}
                 />
@@ -49,9 +48,6 @@ const DonorHomePage = ({ navigation }) => {
                     navigation={navigation}
                 />
             </View>
-            {/* <View style={styles.container1}>
-                <BottomTabNavigation />
-            </View> */}
         </View>
     );
 };

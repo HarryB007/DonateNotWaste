@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigation from './src/navigation/StackNavigation';
+// import BottomTabNavigation from './src/navigation/BottomTabNavigation';
 
 // Import Firebase and its modules
 import  firebase  from '@react-native-firebase/app';
@@ -31,6 +32,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <StackNavigation />
+      {/* <BottomTabNavigation /> */}
     </NavigationContainer>
   );
 };
