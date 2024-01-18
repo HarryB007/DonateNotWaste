@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default function Header({ title, showBackButton }) {
+export default function Header({ title, showBackButton,style }) {
     const navigation = useNavigation();
 
     const handleBackPress = () => {
@@ -13,7 +13,7 @@ export default function Header({ title, showBackButton }) {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,style]}>
             {showBackButton && (
                 <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
                 <Image
@@ -34,15 +34,16 @@ export default function Header({ title, showBackButton }) {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 10,
+        width: windowWidth* 1.2,
     },
     text: {
         flex: 1,
         textAlign: 'center',
-        fontSize: 26,
+        fontSize: 20,
         color: '#000',
         fontFamily:'Poppins',
         fontWeight: 'bold',
-        marginLeft: 60,
+        marginLeft: 45,
     },
     backButton: {
         padding: 10,
@@ -52,6 +53,6 @@ export default function Header({ title, showBackButton }) {
         height: 20,
         resizeMode: 'contain',
         tintColor: '#000',
-        marginLeft: 15,
+        marginLeft: 8,
     },
 });

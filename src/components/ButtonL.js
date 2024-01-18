@@ -1,13 +1,16 @@
-import {Text, Pressable, StyleSheet, View, TouchableHighlight} from 'react-native';
+import { Text, Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
-const ButtonL = props => {
+
+const ButtonL = (props) => {
+  const { title, customStyle } = props;
+
   return (
-    <View style={styles.press} underlayColor="#ffffff">
-      <Text style={styles.text1}>{props.title}</Text>
+    <View style={[styles.press, customStyle]} underlayColor="#ffffff">
+      <Text style={styles.text1}>{title}</Text>
     </View>
-  
   );
 };
+
 const styles = StyleSheet.create({
   press: {
     backgroundColor: '#F86D3B',
@@ -20,7 +23,7 @@ const styles = StyleSheet.create({
   text1: {
     color: 'white',
     fontSize: 20,
-    fontFamily:'Poppins-SemiBold',
+    fontFamily: 'Poppins',
     alignSelf: 'center',
   },
 });

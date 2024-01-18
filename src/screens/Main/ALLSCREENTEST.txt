@@ -1,0 +1,1807 @@
+import React from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+const ProfileScreen = () => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.timeText}>09:45 AM</Text>
+        <Text style={styles.headerTitle}>My Profile</Text>
+      </View>
+      <View style={styles.profileSection}>
+        <Image
+          source={{ uri: 'path_to_your_image' }}
+          style={styles.profilePic}
+        />
+        <Text style={styles.nameText}>Hassan Munawar</Text>
+        <TouchableOpacity style={styles.editButton}>
+          <Text style={styles.editButtonText}>Edit Profile</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.menu}>
+        <MenuItem title="Settings" />
+        <MenuItem title="About" />
+        <MenuItem title="Log Out" />
+      </View>
+    </View>
+  );
+};
+
+const MenuItem = ({ title }) => (
+  <TouchableOpacity style={styles.menuItem}>
+    <Text style={styles.menuItemText}>{title}</Text>
+  </TouchableOpacity>
+);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
+    marginTop: windowHeight * 0.05,
+    marginHorizontal: windowWidth * 0.05,
+  },
+  timeText: {
+    fontSize: 16,
+    color: '#000',
+    marginBottom: 5,
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+  },
+  profileSection: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  profilePic: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+  nameText: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  editButton: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: 'orange',
+    borderRadius: 20,
+  },
+  editButtonText: {
+    color: '#fff',
+  },
+  menu: {
+    marginTop: 30,
+  },
+  menuItem: {
+    backgroundColor: 'orange',
+    padding: 15,
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderRadius: 10,
+  },
+  menuItemText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+});
+
+export default ProfileScreen;
+
+//2nd
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+
+const ChangePasswordScreen = () => {
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleSubmit = () => {
+    // Implement your submit logic here
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Change Password</Text>
+      </View>
+      <TextInput
+        style={styles.input}
+        onChangeText={setOldPassword}
+        value={oldPassword}
+        placeholder="Enter old password"
+        secureTextEntry
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setNewPassword}
+        value={newPassword}
+        placeholder="Enter new password"
+        secureTextEntry
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setConfirmPassword}
+        value={confirmPassword}
+        placeholder="Re-enter password"
+        secureTextEntry
+      />
+      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+        <Text style={styles.submitButtonText}>Submit</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  header: {
+    marginBottom: 40,
+    // Add additional styles for the header if needed
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    // Add additional styles for the header text if needed
+  },
+  input: {
+    width: '80%',
+    padding: 15,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 10,
+    // Add additional styles for the input fields if needed
+  },
+  submitButton: {
+    width: '80%',
+    padding: 15,
+    backgroundColor: 'orange',
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  submitButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    // Add additional styles for the submit button text if needed
+  },
+});
+
+export default ChangePasswordScreen;
+
+//3rd
+import React, { useState } from 'react';
+import { ScrollView, View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
+const UpdateProfileScreen = () => {
+  const [name, setName] = useState('Hassan Munawar');
+  const [phone, setPhone] = useState('0302-5760306');
+  const [email, setEmail] = useState('Hassan@gmail.com');
+  const [city, setCity] = useState('Islamabad');
+
+  const handleUpdate = () => {
+    // Handle the update logic here
+  };
+
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Update Profile</Text>
+      </View>
+      <View style={styles.profilePictureSection}>
+        <Image
+          source={{ uri: 'path_to_profile_picture' }} // Replace with your image path
+          style={styles.profilePicture}
+        />
+        <TouchableOpacity onPress={() => { /* logic to change picture */ }}>
+          <Text style={styles.changePictureText}>Change Picture</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.form}>
+        <ProfileField label="Name" value={name} onChangeText={setName} />
+        <ProfileField label="Phone Number" value={phone} onChangeText={setPhone} />
+        <ProfileField label="Email Address" value={email} onChangeText={setEmail} />
+        <ProfileField label="City" value={city} onChangeText={setCity} />
+      </View>
+      <TouchableOpacity style={styles.updateButton} onPress={handleUpdate}>
+        <Text style={styles.updateButtonText}>Update Profile</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+};
+
+const ProfileField = ({ label, value, onChangeText }) => (
+  <View style={styles.fieldContainer}>
+    <Text style={styles.label}>{label}</Text>
+    <TextInput
+      style={styles.input}
+      onChangeText={onChangeText}
+      value={value}
+    />
+  </View>
+);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  contentContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  header: {
+    marginTop: height * 0.05,
+    marginBottom: height * 0.03,
+  },
+  headerText: {
+    fontSize: width * 0.06,
+    fontWeight: 'bold',
+  },
+  profilePictureSection: {
+    alignItems: 'center',
+    marginBottom: height * 0.04,
+  },
+  profilePicture: {
+    width: width * 0.3,
+    height: width * 0.3,
+    borderRadius: (width * 0.3) / 2,
+  },
+  changePictureText: {
+    color: '#000',
+    marginTop: height * 0.01,
+  },
+  form: {
+    width: '90%',
+  },
+  fieldContainer: {
+    marginBottom: height * 0.02,
+  },
+  label: {
+    fontSize: width * 0.04,
+    color: '#000',
+    marginBottom: height * 0.01,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 5,
+    padding: height * 0.02,
+    fontSize: width * 0.04,
+  },
+  updateButton: {
+    backgroundColor: 'orange',
+    borderRadius: 20,
+    padding: height * 0.02,
+    alignItems: 'center',
+    width: '90%',
+    marginTop: height * 0.03,
+  },
+  updateButtonText: {
+    color: '#fff',
+    fontSize: width * 0.05,
+  },
+});
+
+export default UpdateProfileScreen;
+
+//4th
+import React, { useState } from 'react';
+import {
+  ScrollView,
+  View,
+  Text,
+  StyleSheet,
+  Switch,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+
+const SettingsScreen = () => {
+  const [isNotificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [isUpdatesEnabled, setUpdatesEnabled] = useState(false);
+  const [isDarkModeEnabled, setDarkModeEnabled] = useState(false);
+
+  const toggleSwitch = (setting) => {
+    switch (setting) {
+      case 'notifications':
+        setNotificationsEnabled(previousState => !previousState);
+        break;
+      case 'updates':
+        setUpdatesEnabled(previousState => !previousState);
+        break;
+      case 'darkMode':
+        setDarkModeEnabled(previousState => !previousState);
+        break;
+      default:
+        break;
+    }
+  };
+
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Settings</Text>
+      </View>
+      <SettingSection title="Account">
+        <SettingItem title="Edit Profile" />
+        <SettingItem title="Change Password" />
+        <SettingItem title="Privacy" />
+      </SettingSection>
+      <SettingSection title="Notification">
+        <SettingItem
+          title="Notification"
+          isSwitch
+          onValueChange={() => toggleSwitch('notifications')}
+          value={isNotificationsEnabled}
+        />
+        <SettingItem
+          title="Updates"
+          isSwitch
+          onValueChange={() => toggleSwitch('updates')}
+          value={isUpdatesEnabled}
+        />
+      </SettingSection>
+      <SettingSection title="Other">
+        <SettingItem
+          title="Dark Mode"
+          isSwitch
+          onValueChange={() => toggleSwitch('darkMode')}
+          value={isDarkModeEnabled}
+        />
+      </SettingSection>
+    </ScrollView>
+  );
+};
+
+const SettingSection = ({ title, children }) => (
+  <View style={styles.sectionContainer}>
+    <Text style={styles.sectionTitle}>{title}</Text>
+    {children}
+  </View>
+);
+
+const SettingItem = ({ title, isSwitch, onValueChange, value }) => (
+  <View style={styles.settingItem}>
+    <Text style={styles.itemTitle}>{title}</Text>
+    {isSwitch && (
+      <Switch
+        trackColor={{ false: "#767577", true: "#81b0ff" }}
+        thumbColor={value ? "#f5dd4b" : "#f4f3f4"}
+        onValueChange={onValueChange}
+        value={value}
+      />
+    )}
+  </View>
+);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
+    paddingHorizontal: windowWidth * 0.05,
+    paddingVertical: 20,
+  },
+  headerTitle: {
+    fontSize: windowWidth * 0.06,
+    fontWeight: 'bold',
+  },
+  sectionContainer: {
+    marginTop: 20,
+    paddingHorizontal: windowWidth * 0.05,
+  },
+  sectionTitle: {
+    fontSize: windowWidth * 0.05,
+    color: 'red',
+    paddingBottom: 10,
+  },
+  settingItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  itemTitle: {
+    fontSize: windowWidth * 0.04,
+  },
+});
+
+export default SettingsScreen;
+
+//5th
+import React from 'react';
+import { SafeAreaView, View, FlatList, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+
+const chats = [
+  { id: '1', name: 'Ali', message: 'Hey, I am on the way!', time: '11:12 PM' },
+  { id: '2', name: 'Ahmad', message: 'Needed to assure the food quality', time: '03:45 PM' },
+  { id: '3', name: 'Harris', message: 'Hey, I was just wondering if a little...', time: '10:45 AM' },
+];
+
+const ChatItem = ({ name, message, time }) => (
+  <TouchableOpacity style={styles.item}>
+    <View style={styles.avatar}>
+      {/* Avatar would go here */}
+      <Text>{name.charAt(0)}</Text>
+    </View>
+    <View style={styles.content}>
+      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.message}>{message}</Text>
+    </View>
+    <Text style={styles.time}>{time}</Text>
+  </TouchableOpacity>
+);
+
+const ChatScreen = () => (
+  <SafeAreaView style={styles.container}>
+    <FlatList
+      data={chats}
+      renderItem={({ item }) => <ChatItem name={item.name} message={item.message} time={item.time} />}
+      keyExtractor={item => item.id}
+    />
+  </SafeAreaView>
+);
+
+const { width } = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  item: {
+    flexDirection: 'row',
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+    alignItems: 'center',
+  },
+  avatar: {
+    width: width * 0.15,
+    height: width * 0.15,
+    borderRadius: (width * 0.15) / 2,
+    backgroundColor: '#e0e0e0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 8,
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  message: {
+    fontSize: 14,
+    color: '#646464',
+  },
+  time: {
+    fontSize: 14,
+    color: '#646464',
+  },
+});
+
+export default ChatScreen;
+
+//6th
+import React, { useState } from 'react';
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+
+const ForgotPasswordScreen = () => {
+  const [email, setEmail] = useState('');
+
+  const handleGetCode = () => {
+    // Implement what happens when the user presses the 'Get Code' button
+    console.log('Code requested for:', email);
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => console.log('Back button pressed')}>
+          {/* Icon would go here */}
+          <Text style={styles.backButton}>←</Text>
+        </TouchableOpacity>
+        <Text style={styles.title}>Forget Password</Text>
+      </View>
+      <Text style={styles.instructions}>
+        Enter your email address to receive a verification code
+      </Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={setEmail}
+        value={email}
+        placeholder="Enter your email"
+        keyboardType="email-address"
+      />
+      <TouchableOpacity style={styles.button} onPress={handleGetCode}>
+        <Text style={styles.buttonText}>Get Code</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 40,
+  },
+  backButton: {
+    fontSize: 18,
+    color: '#000',
+    marginRight: 10,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+  },
+  instructions: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  input: {
+    width: '100%',
+    height: 50,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 10,
+    marginBottom: 20,
+    fontSize: 16,
+  },
+  button: {
+    width: '100%',
+    height: 50,
+    backgroundColor: 'orange',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+});
+
+export default ForgotPasswordScreen;
+
+//7th
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+  Dimensions,
+} from 'react-native';
+
+// Get the device's window size
+const window = Dimensions.get('window');
+
+const messagesData = [
+  { id: '1', text: 'Hello How are you?', sender: 'other' },
+  { id: '2', text: 'I am doing good, wbu?', sender: 'self' },
+  { id: '3', text: 'Good!', sender: 'other' },
+];
+
+const MessageItem = ({ text, sender }) => {
+  const isSelf = sender === 'self';
+  return (
+    <View style={[styles.messageContainer, isSelf ? styles.selfMessage : styles.otherMessage]}>
+      <Text style={styles.messageText}>{text}</Text>
+    </View>
+  );
+};
+
+const ChatScreen = () => {
+  const [message, setMessage] = useState('');
+
+  const sendMessage = () => {
+    // Logic to send message
+    console.log(message);
+    setMessage('');
+  };
+
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 80}
+    >
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Naim Ahmad</Text>
+        <Text style={styles.onlineStatus}>Online</Text>
+      </View>
+      <FlatList
+        data={messagesData}
+        renderItem={({ item }) => <MessageItem text={item.text} sender={item.sender} />}
+        keyExtractor={(item) => item.id}
+        inverted
+        style={styles.messageList}
+      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          value={message}
+          onChangeText={setMessage}
+          placeholder="Type a message..."
+        />
+        <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
+          <Text style={styles.sendButtonText}>Send</Text>
+        </TouchableOpacity>
+      </View>
+    </KeyboardAvoidingView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    padding: 10,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e1e1e1',
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  onlineStatus: {
+    color: 'green',
+  },
+  messageList: {
+    flex: 1,
+  },
+  messageContainer: {
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 10,
+    borderRadius: 20,
+    maxWidth: '70%',
+  },
+  selfMessage: {
+    alignSelf: 'flex-end',
+    backgroundColor: 'orange',
+  },
+  otherMessage: {
+    alignSelf: 'flex-start',
+    backgroundColor: 'grey',
+  },
+  messageText: {
+    color: '#fff',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    padding: 10,
+    backgroundColor: '#fff',
+    borderTopWidth: 1,
+    borderTopColor: '#e1e1e1',
+  },
+  input: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 20,
+    padding: 10,
+    marginRight: 10,
+    height: 40, // Fixed height for TextInput
+  },
+  sendButton: {
+    backgroundColor: 'orange',
+    borderRadius: 20,
+    padding: 10,
+    justifyContent: 'center',
+  },
+  sendButtonText: {
+    color: '#fff',
+  },
+});
+
+export default ChatScreen;
+
+//8th
+import React from 'react';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Make sure to install this package
+
+const { width } = Dimensions.get('window');
+
+const requestsData = [
+  {
+    id: '1',
+    name: 'Meverik',
+    location: 'F7, Islamabad',
+    description: 'I have some needy people in my neighbors who might need this food. Thanks in Advance.',
+    selfPickup: 'Yes',
+  },
+  {
+    id: '2',
+    name: 'Naim Ahmad',
+    location: 'Gulberg, Islamabad',
+    description: 'Need this food for an NGO to feed orphans and old people.',
+    selfPickup: 'No',
+  },
+  // Add more requests as needed
+];
+
+const RequestItem = ({ name, location, description, selfPickup }) => (
+  <View style={styles.requestItem}>
+    <View style={styles.requestInfo}>
+      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.location}>{location}</Text>
+      <Text style={styles.description}>{description}</Text>
+      <Text style={styles.selfPickup}>Self pickup - {selfPickup}</Text>
+    </View>
+    <View style={styles.actionButtons}>
+      <TouchableOpacity style={styles.buttonReject}>
+        <Icon name="close" size={24} color="red" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonAccept}>
+        <Icon name="check" size={24} color="green" />
+      </TouchableOpacity>
+    </View>
+  </View>
+);
+
+const NeedyRequestsScreen = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity>
+          <Icon name="arrow-left" size={24} color="#000" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Needy Requests</Text>
+        <TouchableOpacity>
+          <Icon name="account-circle-outline" size={24} color="#000" />
+        </TouchableOpacity>
+      </View>
+
+      <FlatList
+        data={requestsData}
+        renderItem={({ item }) => <RequestItem {...item} />}
+        keyExtractor={item => item.id}
+        style={styles.requestsList}
+      />
+
+      <View style={styles.tabBar}>
+         <TouchableOpacity style={styles.tabItem}>
+          <Icon name="home-outline" size={24} color="#000" />
+          <Text style={styles.tabTitle}>Feed</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tabItem}>
+          <Icon name="format-list-bulleted" size={24} color="#000" />
+          <Text style={styles.tabTitle}>Requests</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tabItem}>
+          <Icon name="message-text-outline" size={24} color="#000" />
+          <Text style={styles.tabTitle}>Chats</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tabItem}>
+          <Icon name="account-outline" size={24} color="#000" />
+          <Text style={styles.tabTitle}>Account</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  requestItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 15,
+    marginVertical: 5,
+    marginHorizontal: 10,
+    borderWidth: 1,
+    borderColor: '#e1e1e1',
+    borderRadius: 10,
+    backgroundColor: '#f9f9f9',
+  },
+  requestInfo: {
+    flex: 1,
+  },
+  name: {
+    fontWeight: 'bold',
+  },
+  location: {
+    fontStyle: 'italic',
+  },
+  description: {
+    marginVertical: 5,
+  },
+  selfPickup: {
+    color: '#555',
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttonAccept: {
+    marginLeft: 10,
+  },
+  buttonReject: {
+    marginLeft: 10,
+  },
+  tabBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderColor: '#e1e1e1',
+  },
+   tabItem: {
+    alignItems: 'center',
+  },
+  tabTitle: {
+    fontSize: 12,
+    color: '#000',
+  },
+  requestsList: {
+    flex: 1,
+  },
+});
+
+export default NeedyRequestsScreen;
+
+//9th
+import React from 'react';
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  SafeAreaView, 
+  ScrollView, 
+  Image, 
+  TouchableOpacity,
+  Linking
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Make sure to install this package
+
+const FoodDetailsScreen = () => {
+  const handleCallPress = () => {
+    // Assuming you have the phone number in a state or from props
+    let phoneNumber = '+923035676641';
+    Linking.openURL(`tel:${phoneNumber}`);
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.header}>
+          <TouchableOpacity>
+            <Icon name="arrow-left" size={24} color="#000" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Food Details</Text>
+          <TouchableOpacity>
+            <Icon name="account-circle-outline" size={24} color="#000" />
+          </TouchableOpacity>
+        </View>
+
+        <Image 
+          source={require('./path-to-your-image.jpg')} // Replace with your local image
+          style={styles.foodImage}
+        />
+
+        <View style={styles.contentContainer}>
+          <Text style={styles.foodTitle}>Chicken Karahi</Text>
+          <Text style={styles.foodDescription}>
+            Made by home chef but some of it got left and now it is available for anyone who would like to have it. It is still fresh.
+          </Text>
+          <Text style={styles.expirationDate}>Expiration date - 30-12-2023</Text>
+
+          <View style={styles.userContainer}>
+            <Icon name="account-circle" size={24} color="#000" />
+            <Text style={styles.userName}>Maria Kashif</Text>
+            <Text style={styles.userAddress}>House #26, Street 1, 18, Islamabad</Text>
+          </View>
+
+          <TouchableOpacity style={styles.requestButton}>
+            <Text style={styles.requestButtonText}>Send Request</Text>
+          </TouchableOpacity>
+
+          <View style={styles.callContainer}>
+            <Text>You can also call at</Text>
+            <TouchableOpacity onPress={handleCallPress}>
+              <Text style={styles.phoneNumber}>+92 3035676641</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  foodImage: {
+    width: '100%',
+    height: 300, // You can adjust the height
+  },
+  contentContainer: {
+    padding: 15,
+  },
+  foodTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  foodDescription: {
+    fontSize: 16,
+    marginVertical: 10,
+  },
+  expirationDate: {
+    fontSize: 14,
+    marginBottom: 20,
+  },
+  userContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  userName: {
+    marginLeft: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  userAddress: {
+    fontSize: 16,
+    color: '#555',
+  },
+  requestButton: {
+    backgroundColor: 'orange',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  requestButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  callContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  phoneNumber: {
+    color: 'blue',
+    textDecorationLine: 'underline',
+  },
+});
+
+export default FoodDetailsScreen;
+
+
+//10th
+import React from 'react';
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  SafeAreaView, 
+  ScrollView, 
+  Image, 
+  TouchableOpacity,
+  Linking,
+  Dimensions
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Make sure to install this package
+
+const { width } = Dimensions.get('window');
+
+const FoodDetailsScreen = () => {
+  const handleCallPress = () => {
+    // Assuming you have the phone number in a state or from props
+    let phoneNumber = '+923035676641';
+    Linking.openURL(`tel:${phoneNumber}`);
+  };
+
+  const handleLocationPress = () => {
+    // Logic to handle location press, potentially opening maps
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.header}>
+          <TouchableOpacity>
+            <Icon name="arrow-left" size={24} color="#000" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Food Details</Text>
+          <TouchableOpacity>
+            <Icon name="account-circle-outline" size={24} color="#000" />
+          </TouchableOpacity>
+        </View>
+
+        <Image 
+          source={require('./path-to-your-image.jpg')} // Replace with your local image
+          style={styles.foodImage}
+        />
+
+        <View style={styles.contentContainer}>
+          <Text style={styles.foodTitle}>Chicken Karahi</Text>
+          <Text style={styles.foodDescription}>
+            Made by home chef but some of it got left and now it is available for anyone who would like to have it. It is still fresh.
+          </Text>
+          <Text style={styles.expirationDate}>Expiration date - 30-12-2023</Text>
+
+          <View style={styles.userContainer}>
+            <Icon name="account-circle" size={24} color="#000" />
+            <Text style={styles.userName}>Maria Kashif</Text>
+            <TouchableOpacity onPress={handleLocationPress}>
+              <Icon name="map-marker-radius" size={24} color="#000" />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.userAddress}>House #26, Street 1, 18, Islamabad</Text>
+
+          <TouchableOpacity style={styles.locationButton} onPress={handleLocationPress}>
+            <Text style={styles.locationButtonText}>Show location on maps</Text>
+          </TouchableOpacity>
+
+          <View style={styles.callContainer}>
+            <Text>You can also call at</Text>
+            <TouchableOpacity onPress={handleCallPress}>
+              <Text style={styles.phoneNumber}>+92 3035676641</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  foodImage: {
+    width: width,
+    height: width, // making the image square
+  },
+  contentContainer: {
+    padding: 15,
+  },
+  foodTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  foodDescription: {
+    fontSize: 16,
+    marginVertical: 10,
+  },
+  expirationDate: {
+    fontSize: 14,
+    marginBottom: 20,
+  },
+  userContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  userName: {
+    marginLeft: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+    flex: 1,
+  },
+  userAddress: {
+    fontSize: 16,
+    color: '#555',
+    marginBottom: 20,
+  },
+  locationButton: {
+    backgroundColor: 'orange',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  locationButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  callContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  phoneNumber: {
+    color: 'blue',
+    textDecorationLine: 'underline',
+  },
+});
+
+export default FoodDetailsScreen;
+
+
+//11th
+import React, { useState } from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Make sure to install this package
+
+const { width } = Dimensions.get('window');
+
+const UpdateProfileScreen = () => {
+  const [name, setName] = useState('Hassan Munawar');
+  const [phoneNumber, setPhoneNumber] = useState('0302-5760306');
+  const [email, setEmail] = useState('Hassan@gmail.com');
+  const [city, setCity] = useState('Islamabad');
+
+  const handleUpdateProfile = () => {
+    // Handle the profile update logic
+    console.log(name, phoneNumber, email, city);
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <TouchableOpacity style={styles.backButton}>
+          <Icon name="arrow-back" size={24} color="#000" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Update Profile</Text>
+        
+        <View style={styles.profilePictureContainer}>
+          <Image
+            source={require('./path-to-your-profile-image.jpg')} // Replace with your local image
+            style={styles.profilePicture}
+          />
+          <TouchableOpacity>
+            <Text style={styles.changePictureText}>Change Picture</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.textInput}
+            value={name}
+            onChangeText={setName}
+            placeholder="Name"
+          />
+          <TextInput
+            style={styles.textInput}
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
+            placeholder="Phone Number"
+            keyboardType="phone-pad"
+          />
+          <TextInput
+            style={styles.textInput}
+            value={email}
+            onChangeText={setEmail}
+            placeholder="Email Address"
+            keyboardType="email-address"
+          />
+          <TextInput
+            style={styles.textInput}
+            value={city}
+            onChangeText={setCity}
+            placeholder="City"
+          />
+        </View>
+
+        <TouchableOpacity style={styles.updateButton} onPress={handleUpdateProfile}>
+          <Text style={styles.updateButtonText}>Update Profile</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  contentContainer: {
+    alignItems: 'center',
+    paddingTop: 20,
+  },
+  backButton: {
+    alignSelf: 'flex-start',
+    marginLeft: 10,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginVertical: 20,
+  },
+  profilePictureContainer: {
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  profilePicture: {
+    width: width * 0.3,
+    height: width * 0.3,
+    borderRadius: (width * 0.3) / 2,
+  },
+  changePictureText: {
+    color: '#000',
+    fontSize: 16,
+    marginVertical: 8,
+  },
+  inputContainer: {
+    width: '90%',
+    alignItems: 'center',
+  },
+  textInput: {
+    width: '100%',
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 15,
+  },
+  updateButton: {
+    backgroundColor: 'orange',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '90%',
+    marginVertical: 20,
+  },
+  updateButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});
+
+export default UpdateProfileScreen;
+
+
+//12th
+import React, { useState } from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
+
+const { width } = Dimensions.get('window');
+
+const postsData = [
+  {
+    id: '1',
+    title: 'Chicken Karahi',
+    description: 'Made by home chef but some of it got left and now it is available for anyone who would like to have it. It is still fresh.',
+    image: require('./chicken-karahi.jpg'), // Replace with your local image path
+    location: 'House # 67/A, Street 14, Gulberg, Islamabad.',
+  },
+  {
+    id: '2',
+    title: 'Shrimp Fried Rice',
+    description: 'I made these rice at home. My family had dinner with our relatives and these are available for any needy person.',
+    image: require('./shrimp-fried-rice.jpg'), // Replace with your local image path
+    location: 'Home # 12, Street 4, F7, Islamabad.',
+  },
+  // ... more posts
+];
+
+const PostItem = ({ title, description, image, location }) => (
+  <View style={styles.postContainer}>
+    <Image source={image} style={styles.postImage} />
+    <Text style={styles.postTitle}>{title}</Text>
+    <Text style={styles.postDescription}>{description}</Text>
+    <Text style={styles.postLocation}>{location}</Text>
+  </View>
+);
+
+const PostsScreen = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const renderPostItem = ({ item }) => <PostItem {...item} />;
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Posts</Text>
+      </View>
+      <TextInput
+        style={styles.searchInput}
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+        placeholder="Search"
+      />
+      <View style={styles.categoryContainer}>
+        {/* Category tabs can be a horizontal FlatList or ScrollView */}
+        <Text style={styles.categoryText}>All</Text>
+        <Text style={styles.categoryText}>Pizza</Text>
+        <Text style={styles.categoryText}>Burger</Text>
+        <Text style={styles.categoryText}>Chicken</Text>
+        <Text style={styles.categoryText}>Desi</Text>
+      </View>
+      <FlatList
+        data={postsData}
+        renderItem={renderPostItem}
+        keyExtractor={item => item.id}
+      />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
+    paddingHorizontal: 10,
+    paddingTop: 10,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  searchInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 10,
+    paddingLeft: 10,
+  },
+  categoryContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10,
+  },
+  categoryText: {
+    color: '#000',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'gray',
+    fontSize: 16,
+  },
+  postContainer: {
+    padding: 10,
+  },
+  postImage: {
+    width: '100%',
+    height: width * 0.5, // Maintain aspect ratio based on screen width
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  postTitle: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 5,
+  },
+  postDescription: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  postLocation: {
+    fontSize: 12,
+    color: 'gray',
+  },
+});
+
+export default PostsScreen;
+
+
+//13th
+import React from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Make sure to install this package
+
+const { width } = Dimensions.get('window');
+
+const posts = [
+  {
+    id: '1',
+    title: 'Chicken Karahi',
+    description: 'Made by home chef but some of it got left and now it is available for anyone who would like to have it. It is still fresh',
+    image: 'path-to-chicken-karahi-image', // Replace with your actual image path
+  },
+  {
+    id: '2',
+    title: 'Fried Rice',
+    description: 'I made these rice at home. My family had dinner with our relatives and these are available for any needy person.',
+    image: 'path-to-fried-rice-image', // Replace with your actual image path
+  },
+  // ... More posts
+];
+
+const PostItem = ({ title, description, image }) => (
+  <View style={styles.postItem}>
+    <Image source={{ uri: image }} style={styles.postImage} />
+    <View style={styles.postContent}>
+      <Text style={styles.postTitle}>{title}</Text>
+      <Text style={styles.postDescription}>{description}</Text>
+    </View>
+  </View>
+);
+
+const MyPostsScreen = () => {
+  const renderPost = ({ item }) => <PostItem {...item} />;
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity>
+          <Icon name="arrow-back" size={24} color="#000" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>My Posts</Text>
+        <TouchableOpacity>
+          <Icon name="account-circle" size={24} color="#000" />
+        </TouchableOpacity>
+      </View>
+
+      <FlatList
+        data={posts}
+        renderItem={renderPost}
+        keyExtractor={item => item.id}
+        style={styles.postsList}
+      />
+
+      <TouchableOpacity style={styles.addButton}>
+        <Text style={styles.addButtonText}>Add New Post</Text>
+      </TouchableOpacity>
+
+      {/* Bottom Tab Navigation Placeholder */}
+      <View style={styles.tabBar}>
+        {/* Icons for Feed, Requests, Chats, Account */}
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  postsList: {
+    padding: 10,
+  },
+  postItem: {
+    flexDirection: 'row',
+    marginBottom: 15,
+    borderRadius: 10,
+    overflow: 'hidden',
+    backgroundColor: '#f0f0f0',
+    elevation: 2,
+  },
+  postImage: {
+    width: width * 0.3,
+    height: width * 0.3,
+  },
+  postContent: {
+    padding: 10,
+    justifyContent: 'center',
+  },
+  postTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  postDescription: {
+    fontSize: 14,
+  },
+  addButton: {
+    backgroundColor: 'orange',
+    borderRadius: 25,
+    padding: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+  },
+  addButtonText: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  tabBar: {
+    // Style for your tab bar
+  },
+});
+
+export default MyPostsScreen;
+
+
+//14th
+import React, { useState } from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+  Image,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Make sure to install this package
+
+const { width } = Dimensions.get('window');
+
+const UpdatePostScreen = () => {
+  const [foodName, setFoodName] = useState('');
+  const [description, setDescription] = useState('');
+  const [expirationDate, setExpirationDate] = useState('');
+  const [location, setLocation] = useState('');
+
+  const handlePostUpdate = () => {
+    // Logic to handle post update
+    console.log(foodName, description, expirationDate, location);
+  };
+
+  // Dummy function for demonstration
+  const handleSelectImage = () => {
+    console.log('Select image');
+  };
+
+  // Dummy function for demonstration
+  const handleSelectLocation = () => {
+    console.log('Select location');
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={styles.header}>
+          <TouchableOpacity>
+            <Icon name="arrow-back" size={24} color="#000" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Update Post</Text>
+          <TouchableOpacity>
+            <Icon name="account-circle" size={24} color="#000" />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            value={foodName}
+            onChangeText={setFoodName}
+            placeholder="Name of the Food"
+          />
+          <TextInput
+            style={styles.input}
+            value={description}
+            onChangeText={setDescription}
+            placeholder="Description"
+            multiline
+          />
+          <TextInput
+            style={styles.input}
+            value={expirationDate}
+            onChangeText={setExpirationDate}
+            placeholder="Expiration Date"
+          />
+          <TouchableOpacity style={styles.locationButton} onPress={handleSelectLocation}>
+            <Icon name="location-on" size={24} color="#000" />
+            <Text style={styles.locationText}>Add your location</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.uploadButton} onPress={handleSelectImage}>
+            <Icon name="photo-camera" size={24} color="#000" />
+            <Text style={styles.uploadText}>Upload Image</Text>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity style={styles.postButton} onPress={handlePostUpdate}>
+          <Text style={styles.postButtonText}>Post</Text>
+        </TouchableOpacity>
+      </ScrollView>
+
+      {/* Bottom Tab Navigation Placeholder */}
+      <View style={styles.tabBar}>
+        {/* Icons for Feed, Requests, Chats, Account */}
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  contentContainer: {
+    padding: 10,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  inputContainer: {
+    marginVertical: 20,
+  },
+  input: {
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 10,
+    fontSize: 16,
+  },
+  locationButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: '#f0f0f0',
+    marginBottom: 10,
+  },
+  locationText: {
+    marginLeft: 10,
+    fontSize: 16,
+  },
+  uploadButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: '#f0f0f0',
+    marginBottom: 20,
+  },
+  uploadText: {
+    marginLeft: 10,
+    fontSize: 16,
+  },
+  postButton: {
+    backgroundColor: 'orange',
+    borderRadius: 25,
+    paddingVertical: 15,
+    paddingHorizontal: 60,
+    alignSelf: 'center',
+    marginBottom: 20,
+  },
+  postButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  tabBar: {
+    // Style for your tab bar
+  },
+});
+
+export default
+
+//15th
+HOME SCREEN
+
+
+//16th
+Login Screen New

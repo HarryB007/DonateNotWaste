@@ -17,49 +17,52 @@ import ButtonL from '../../components/ButtonL.js';
 import ErrorMessage from '../../components/ErrorMessage';
 import { Email, Group } from '../../assets/images';
 import Loader from '../../components/Loader.js';
-// import { auth } from '@react-native-firebase/auth';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import LottieView from 'lottie-react-native';
+// import { LoginContext } from '../../context/Context'; 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const LoginScreen = () => {
+  // setLoader(true);
   const navigation = useNavigation();
   const [loader, setLoader] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState('');
+  const [userData, setUserData] = useState(null);
 
   const handleSignIn = async (email, password) => {
     try {
-      setLoader(true);
-
-      // Sign in user with email and password
+      setError('');
       const userCredential = await auth().signInWithEmailAndPassword(email, password);
-
-      // Get the signed-in user
       const user = userCredential.user;
-
-      // Retrieve user type from Firestore
       const userTypeSnapshot = await firestore().collection('users').doc(user.uid).get();
       const userType = userTypeSnapshot.data()?.userType;
 
-      // Navigate to the appropriate home screen based on user type
-      switch (userType) {
-        case 'donor':
-          navigation.navigate('DonorHomePage');
-          break;
-        case 'needy':
-          navigation.navigate('NeedyHomePage');
-          break;
-        case 'rider':
-          navigation.navigate('RiderHomePage');
-          break;
-        // Add more cases for other user types if needed
-        default:
-          console.warn(`Unknown user type: ${userType}`);
-      }
+      // Store user data in context
+      setUserData({ ...userTypeSnapshot.data(), uid: user.uid });
+
+      setSuccessMessage('Login successful! Redirecting...');
+      setTimeout(() => {
+        switch (userType) {
+          case 'donor':
+            navigation.navigate('DonorHomePage');
+            break;
+          case 'needy':
+            navigation.navigate('NeedyHomePage');
+            break;
+          case 'rider':
+            navigation.navigate('RiderHomePage');
+            break;
+          default:
+            console.warn(`Unknown user type: ${userType}`);
+        }
+      }, 2000); // Navigate to Home after 2 seconds
     } catch (error) {
       console.error('Error during sign in:', error.message);
-      // Handle error, display an error message, etc.
+      setError('Invalid email or password');
     } finally {
       setLoader(false);
     }
@@ -84,8 +87,8 @@ const LoginScreen = () => {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.container}
         >
-          <Header title={'Sign In'} showBackButton={true}/>
-          <View style={{ alignContent: 'center', marginTop: 80, marginHorizontal: 15 }}>
+          <Header title={'Sign In'} showBackButton={true} />
+          <View style={{ alignContent: 'center', marginTop: 40, marginHorizontal: 15 }}>
             <View style={{ marginTop: 1, marginLeft: 5 }}>
               <Image source={Email} style={styles.icon} />
               <TextInput
@@ -119,14 +122,30 @@ const LoginScreen = () => {
                 visible={touched['password']}
               />
             </View>
-            <Text style={styles.text2} onPress={() => navigation.navigate('Forgot Password')}>
+            <Text style={styles.text2} onPress={() => navigation.navigate('ForgotPassword')}>
               Forgot Password ?
             </Text>
 
-            <TouchableHighlight style={{ marginTop: 30 }} onPress={handleSubmit} underlayColor="#ffffff">
-              <Button title="Login" />
+            <TouchableHighlight
+              style={styles.button}
+              onPress={handleSubmit}
+              underlayColor="#F86D3B"
+            >
+              <Text style={styles.buttonText}>Login</Text>
             </TouchableHighlight>
-            
+
+            {successMessage !== '' && (
+              <View style={styles.successMessageContainer}>
+                <Text style={styles.successMessageText}>{successMessage}</Text>
+              </View>
+            )}
+
+            {error !== '' && (
+              <View style={styles.errorMessageContainer}>
+                <Text style={styles.errorMessageText}>{error}</Text>
+              </View>
+            )}
+
             <View style={styles.lineContainer}>
               <View style={styles.line} />
               <View style={styles.circleContainer}>
@@ -135,9 +154,21 @@ const LoginScreen = () => {
               <View style={styles.line} />
             </View>
 
-            <TouchableHighlight style={{ marginTop: 80 }} onPress={() => navigation.navigate('SignUpScreen')} underlayColor="#ffffff">
-              <ButtonL title="Sign Up" style={styles.signup}/>
+            <TouchableHighlight
+              style={styles.signupButton}
+              onPress={() => navigation.navigate('SignUpScreen')}
+              underlayColor="#FFFFFF"
+            >
+              <LottieView
+                source={require('../../assets/Animation - 1702547131886.json')}
+                autoPlay
+                loop
+              />
             </TouchableHighlight>
+            <Text style={styles.text3}>
+              Don’t have an account?
+              <Text style={styles.text4} onPress={() => navigation.navigate('SignUpScreen')}>Sign Up</Text>
+            </Text>
           </View>
         </KeyboardAvoidingView>
       )}
@@ -147,64 +178,109 @@ const LoginScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    backgroundColor:'#fff',
+    flex: 1,
+    backgroundColor: '#FFFFFF',
   },
   input: {
-    width: 280,
+    width: 300,
     alignSelf: 'center',
     height: 49,
     fontSize: 13,
     elevation: 10,
     paddingLeft: 60,
     backgroundColor: '#fff',
-    borderRadius: 15,
+    borderRadius: 10,
     color: '#6B6B6B',
   },
   icon: {
     position: 'relative',
-    top: 35,
-    marginLeft: 20,
+    top: 34,
+    marginLeft: 30,
     zIndex: 1,
   },
   text2: {
     alignSelf: 'flex-end',
     marginRight: 20,
     marginTop: 15,
-    color:'#000',
+    color: '#000',
+  },
+  button: {
+    marginTop: 30,
+    backgroundColor: '#F86D3B',
+    borderRadius: 10,
+    padding: 15,
+    alignItems: 'center',
+    width:300,
+    alignSelf: 'center',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   lineContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop:30,
+    marginTop: 30,
   },
   line: {
     flex: 1,
     borderBottomWidth: 2,
     borderColor: '#6B6B6B',
-
   },
   circleContainer: {
     alignItems: 'center',
-    borderRadius:100,
-    
+    borderRadius: 100,
   },
   circleText: {
     height: windowHeight * 0.07,
-    width:windowHeight * 0.07,
+    width: windowHeight * 0.07,
     backgroundColor: '#F86D3B',
     borderRadius: 100,
-    paddingHorizontal: 12,
+    paddingHorizontal: 13,
     paddingVertical: 12,
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 17,
+    fontSize: 18,
   },
-  signup:{
-  
-  }
+  successMessageContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    padding: 20,
+    borderRadius: 10,
+    marginTop: 20,
+    alignItems: 'center',
+    width: 300,
+    alignSelf: 'center',
+  },
+  successMessageText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  errorMessageContainer: {
+    backgroundColor: 'rgba(255, 0, 0, 0.8)',
+    padding: 20,
+    borderRadius: 10,
+    marginTop: 20,
+    alignItems: 'center',
+    width: 300,
+    alignSelf: 'center',
+  },
+  errorMessageText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  text3: {
+    alignSelf: 'center',
+    marginBottom: -50,
+    marginTop: 20,
+    color: '#000',
+  },
+  text4: {
+    color: '#F86D3B',
+    fontWeight: 'bold'
+  },
 });
 
 export default LoginScreen;

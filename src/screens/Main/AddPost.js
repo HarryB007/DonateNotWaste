@@ -102,6 +102,7 @@ const AddPost = () => {
         location: user.city,
         coordinates: { latitude: null, longitude: null }, // Add your logic to set coordinates
         email: user.email,
+        expirationDate: selectedDate.toISOString(), 
       };
 
       await firestore().collection('posts').add(postData);
