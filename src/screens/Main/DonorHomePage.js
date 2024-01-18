@@ -15,9 +15,9 @@ const DonorHomePage = ({ navigation }) => {
                 <MaterialIcons name="menu" size={35} color="black" />
             </TouchableOpacity>
             <View style={styles.header}>
-                {/* <Text style={styles.headerText}>Welcome, Donor!</Text> */}
+                <Text style={styles.headerText}>Welcome, Donor!</Text>
                 <TouchableOpacity onPress={navigation} style={styles.notificationIcon}>
-                <Ionicons name="account-circle" size={30} color="black" />
+                <Ionicons name="notifications" size={30} color="black" />
                 </TouchableOpacity>
             </View>
             <View style={styles.centerContent}>

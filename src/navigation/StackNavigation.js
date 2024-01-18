@@ -17,6 +17,8 @@ import NeedyHomePage from '../screens/Main/NeedyHomePage';
 import AddPost from '../screens/Main/AddPost';
 import ViewPost from '../screens/Main/ViewPost';
 import BottomTabNavigation from '../navigation/BottomTabNavigation';
+import ForgotPassword from '../screens/LoginSignUp/ForgotPassword';
+import FoodDetails from '../screens/Main/FoodDetails';
 enableScreens();
 
 export default function App() {
@@ -38,6 +40,8 @@ export default function App() {
             <Stack.Screen name="AddPost" component={AddPost} />
             <Stack.Screen name="ViewPost" component={ViewPost} />
             <Stack.Screen name="NeedyHomePage" component={NeedyHomePage} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+            <Stack.Screen name="FoodDetails" component={FoodDetails} />
             {/* <Stack.Screen name="BottomTabNavigation" component={BottomTabNavigation} /> */}
         </Stack.Navigator>
     );
